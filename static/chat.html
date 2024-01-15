@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+    <h1>chat room</h1>
+    <h2>{{.RoomName}}</h2>
+	<body>
+    <div class=cell>
+    <div><a class=key href='/'>return</a></div>
+    </div>
+    <br>
+    <br>
+    <!-- message form -->
+    <form name="publish">
+    <div class=cell>Your UserName</div>
+    <input type="text" name="user">
+    <div class=cell>Your Words</div>
+    <input type="text" style='width: 500px;text-align:left' name="message">
+    <div><br></div>
+    <div id="wsStatus"></div> 
+    <input type="submit" value="Send" id="sendButton">
+    </form>
+    <script src='/static/chat.js'></script>
+    <!-- div with messages -->
+    <br>
+    <br>
+    <div id="messages"></div>
+	</body>
+</html>
