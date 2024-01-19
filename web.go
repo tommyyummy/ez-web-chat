@@ -101,6 +101,9 @@ func handleConnections(w http.ResponseWriter, r *http.Request) {
 		}
 	}
 
+	sendOnlineCount(room)
+	defer sendOnlineCount(room)
+
 	for {
 		var msg Message
 		err := conn.ReadJSON(&msg)
@@ -118,6 +121,22 @@ func handleConnections(w http.ResponseWriter, r *http.Request) {
 			fmt.Println(err.Error())
 		}
 	}
+}
+
+func sendOnlineCount(room string) {
+	broadcast, ok := MyDB.RoomChannels[room]
+	if !ok {
+		return
+	}
+
+	clients, ok := MyDB.Rooms[room]
+	if !ok {
+		return
+	}
+
+	onlineCount := len(clients)
+	onlineCountMsg := Message{MessageType: "online_count", OnlineCount: int64(onlineCount)}
+	broadcast <- onlineCountMsg
 }
 
 var tmpl *template.Template

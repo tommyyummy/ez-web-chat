@@ -31,6 +31,13 @@ socket.onmessage = event => {
     console.log(event)
 
     let data = JSON.parse(event.data)
+
+    if (data.message_type == "online_count") {
+        let onlineCountElement = document.getElementById("wsCount")
+        onlineCountElement.textContent = "Online User Count: " + data.online_count
+        return 
+    }
+
     let content = data.username + " : " + data.message + " : ts " + data.ts
     console.log("content", content)
 

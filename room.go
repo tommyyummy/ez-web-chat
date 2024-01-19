@@ -13,9 +13,11 @@ import (
 )
 
 type Message struct {
-	Username  string `json:"username"`
-	Message   string `json:"message"`
-	Timestamp int64  `json:"ts"`
+	MessageType string `json:"message_type"`
+	OnlineCount int64  `json:"online_count"`
+	Username    string `json:"username"`
+	Message     string `json:"message"`
+	Timestamp   int64  `json:"ts"`
 }
 
 type MyChatDB struct {
